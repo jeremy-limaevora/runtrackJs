@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form action="/inscription" method="post">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required>
+        <br>
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span id="emailError" style="color:red;"></span>
+        <br>
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" required>
+        <span id="passwordError" style="color:red;"></span>
+        <br>
+        <label for="adresse">Adresse:</label>
+        <input type="text" id="adresse" name="adresse" required>
+        <br>
+        <label for="codePostal">Code postal:</label>
+        <input type="text" id="codePostal" name="codePostal" required>
+        <br>
+        <input type="submit" value="S'inscrire">
+    </form>
+    <script>
+        // Exemple de vérification asynchrone côté client
+        document.getElementById('email').addEventListener('input', function() {
+            // Vérification de l'email (exemple simple)
+            if (this.value.includes('@')) {
+                document.getElementById('emailError').textContent = '';
+            } else {
+                document.getElementById('emailError').textContent = 'Email invalide';
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function() {
+            // Vérification du mot de passe (exemple simple)
+            if (this.value.length >= 8) {
+                document.getElementById('passwordError').textContent = '';
+            } else {
+                document.getElementById('passwordError').textContent = 'Mot de passe trop court';
+            }
+        });
+    </script>
+</body>
+</html>

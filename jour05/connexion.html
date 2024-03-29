@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Connexion</title>
+</head>
+<body>
+    <form action="/connexion" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span id="emailError" style="color:red;"></span>
+        <br>
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" required>
+        <span id="passwordError" style="color:red;"></span>
+        <br>
+        <input type="submit" value="Se connecter">
+    </form>
+    <script>
+        // Exemple de vérification asynchrone côté client
+        document.getElementById('email').addEventListener('input', function() {
+            // Vérification de l'email (exemple simple)
+            if (this.value.includes('@')) {
+                document.getElementById('emailError').textContent = '';
+            } else {
+                document.getElementById('emailError').textContent = 'Email invalide';
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function() {
+            // Vérification du mot de passe (exemple simple)
+            if (this.value.length >= 8) {
+                document.getElementById('passwordError').textContent = '';
+            } else {
+                document.getElementById('passwordError').textContent = 'Mot de passe trop court';
+            }
+        });
+    </script>
+</body>
+</html>
