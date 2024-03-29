@@ -1,0 +1,56 @@
+<form id="pokemonFilterForm">
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id">
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" name="nom">
+    <label for="type">Type:</label>
+    <select id="type" name="type">
+        <option value="">Sélectionnez un type</option>
+        <option value="Water">Eau</option>
+        <option value="Fire">Feu</option>
+        <option value="Grass">Plante</option>
+        <option value="Psychic">Psy</option>
+        <option value="Ice">Glace</option>
+        <option value="Flying">Vol</option>
+        <option value="Electric">Electrique</option>
+        <option value="Dragon">Dragon</option>
+        <option value="Normal">Normal</option>
+        <option value="Bug">Insecte</option>
+        <option value="Rock">Roche</option>
+        <option value="Ground">Sol</option>
+        <option value="Ghost">Spectre</option>
+        <option value="Poison">Poison</option>
+    </select>
+    <input type="button" id="filtrer" value="Filtrer">
+</form>
+<div id="pokemonList"></div>
+
+<script>
+document.getElementById('filtrer').addEventListener('click', async function() {
+    const id = document.getElementById('id').value;
+    const nom = document.getElementById('nom').value;
+    const type = document.getElementById('type').value;
+
+    const response = await fetch('pokemon.json');
+    const pokemons = await response.json();
+
+    const filteredPokemons = pokemons.filter(pokemon => {
+        return (!id || pokemon.id.toString() === id) &&
+               (!nom || pokemon.nom.toLowerCase().includes(nom.toLowerCase())) &&
+               (!type || pokemon.type.toLowerCase() === type.toLowerCase());
+    });
+
+    displayPokemons(filteredPokemons);
+});
+
+function displayPokemons(pokemons) {
+    const pokemonList = document.getElementById('pokemonList');
+    pokemonList.innerHTML = '';
+
+    pokemons.forEach(pokemon => {
+        const pokemonElement = document.createElement('div');
+        pokemonElement.textContent = `${pokemon.id} - ${pokemon.nom} - ${pokemon.type}`;
+        pokemonList.appendChild(pokemonElement);
+    });
+}
+</script>

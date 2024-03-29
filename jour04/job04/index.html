@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des utilisateurs</title>
+</head>
+<body>
+    <table id="userTable" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Les données des utilisateurs seront ajoutées ici -->
+        </tbody>
+    </table>
+    <button id="updateButton">Mettre à jour</button>
+
+    <script>
+        document.getElementById('updateButton').addEventListener('click', async function() {
+            const response = await fetch('utilisateur.json');
+            const users = await response.json();
+
+            const tableBody = document.querySelector('#userTable tbody');
+            tableBody.innerHTML = ''; // Effacer le contenu existant du tableau
+
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.nom}</td>
+                    <td>${user.prenom}</td>
+                    <td>${user.email}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        });
+    </script>
+</body>
+</html>

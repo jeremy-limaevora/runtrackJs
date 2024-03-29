@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job1: Expression</title>
+    <!-- <script src="./script.js"></script> -->
+    <script defer>
+window.addEventListener('DOMContentLoaded', function() {
+
+    document.getElementById('button').addEventListener('click', async function() {
+        let result = await fetch("./expression.txt",
+        {
+            // mode:'no-cors'
+        })
+        let response = await result.text()
+        console.log(response,'toto')
+    })
+})
+    </script>
+</head>
+<body>
+    <button id="button">Cliquez ici</button>
+    <div id="expressionContainer"></div>
+
+</body>
+</html>
